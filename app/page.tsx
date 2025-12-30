@@ -1,6 +1,7 @@
 import { drizzle } from 'drizzle-orm/neon-http';
 import { neon } from '@neondatabase/serverless';
 import { jobs } from '@/db/schema';
+import { redirect } from 'next/navigation';
 
 const sql = neon(process.env.DATABASE_URL!);
 const db = drizzle(sql);
@@ -16,6 +17,7 @@ async function addJob(formData: FormData) {
     title,
     status: 'applied',
   });
+  redirect('/');
 }
 
 export default async function Home() {
